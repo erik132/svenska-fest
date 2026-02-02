@@ -1,0 +1,1 @@
+Swedish Party creator app. 
