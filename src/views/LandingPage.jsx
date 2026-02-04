@@ -3,12 +3,15 @@ import PageSwapButton from "../components/PageSwapButton.jsx"
 import EventsDisplay from "../components/EventsDisplay.jsx"
 import EventDisplay from "../components/EventDisplay.jsx"
 import EventCreationDisplay from "../components/EventCreationDisplay.jsx"
+import Cookies from 'js-cookie'
 
 function LandingPage({onPageSwap}){
     const [currentEventId, setCurrentEventId] = useState(-1);
     const [eventsCreatedCount, setEventsCreatedCount] = useState(0);
 
-    const selectEvent = (eventId) =>{
+    const isLoggedIn = Cookies.get('Authorization') != null;
+
+    const selectEvent = (eventId) => {
         console.log("New eventId " + eventId);
         setCurrentEventId(eventId);
     }
@@ -22,7 +25,7 @@ function LandingPage({onPageSwap}){
         <PageSwapButton onPageSwap={onPageSwap} targetPage='LoginPage' displayName='Login' />
         <EventsDisplay selectEvent={selectEvent} refreshCounter={eventsCreatedCount}/>
         <EventDisplay currentEventId={currentEventId} />
-        <EventCreationDisplay eventCreatedSuccessfully={eventCreationSuccessful} />
+        {isLoggedIn && <EventCreationDisplay eventCreatedSuccessfully={eventCreationSuccessful} /> }
     </div>);
 }
 
