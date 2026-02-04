@@ -7,7 +7,7 @@ function LandingPage({onPageSwap}){
     const [currentEventId, setCurrentEventId] = useState(-1);
 
     const selectEvent = (eventId) =>{
-    console.log("New eventId " + eventId);
+        console.log("New eventId " + eventId);
         setCurrentEventId(eventId);
     }
 

@@ -1,8 +1,16 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import ParticipantRegistrationForm  from "./ParticipantRegistrationForm.jsx";
+import EventDefailedDescription from "./EventDefailedDescription.jsx";
 
 function EventDisplay({currentEventId}){
     const [currentEvent, setCurrentEvent] = useState(null);
+    //Causes event update when a successful registration happens.
+    const [formsSubmitted, setFormsSubmitted] = useState(0);
+
+    const formSubmittedSuccessfully = () =>{
+        setFormsSubmitted(formsSubmitted + 1);
+    }
 
     useEffect(() => {
         if(currentEventId > 0){
@@ -19,18 +27,11 @@ function EventDisplay({currentEventId}){
         }else{
             setCurrentEvent(null);
         }
-    }, [currentEventId]);
+    }, [currentEventId, formsSubmitted]);
 
     return (<>{ currentEvent && (<div>
-        <p>{currentEvent.name}</p>
-        <p>{currentEvent.address}</p>
-        <p>{currentEvent.dateTime}</p>
-        <p>0 / {currentEvent.maxParticipants}</p>
-        <p>{currentEvent.description}</p>
-        <p>PARTICIPANTS:</p>
-        <ul>
-            {currentEvent.eventParticipants.map(participant => <li key={participant.firstName}> {participant.firstName} {participant.lastName} </li>)}
-        </ul>
+        <EventDefailedDescription currentEvent={currentEvent} />
+        <ParticipantRegistrationForm currentEventId={currentEventId} formSubmittedSuccessfully={formSubmittedSuccessfully} />
     </div>)}</>);
 }
 
