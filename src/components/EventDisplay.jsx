@@ -6,10 +6,10 @@ import EventDefailedDescription from "./EventDefailedDescription.jsx";
 function EventDisplay({currentEventId}){
     const [currentEvent, setCurrentEvent] = useState(null);
     //Causes event update when a successful registration happens.
-    const [formsSubmitted, setFormsSubmitted] = useState(0);
+    const [registrationCounter, setRegistrationCounter] = useState(0);
 
     const formSubmittedSuccessfully = () =>{
-        setFormsSubmitted(formsSubmitted + 1);
+        setRegistrationCounter(registrationCounter + 1);
     }
 
     useEffect(() => {
@@ -27,7 +27,7 @@ function EventDisplay({currentEventId}){
         }else{
             setCurrentEvent(null);
         }
-    }, [currentEventId, formsSubmitted]);
+    }, [currentEventId, registrationCounter]);
 
     return (<>{ currentEvent && (<div>
         <EventDefailedDescription currentEvent={currentEvent} />

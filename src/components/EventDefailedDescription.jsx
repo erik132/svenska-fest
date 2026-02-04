@@ -14,7 +14,6 @@ function EventDefailedDescription({currentEvent}){
             </ul>
         </div>
     );
-
 }
 
 export default EventDefailedDescription;

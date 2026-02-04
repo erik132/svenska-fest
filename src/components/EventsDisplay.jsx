@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-function EventsDisplay({selectEvent}){
+function EventsDisplay({selectEvent, refreshCounter}){
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
@@ -9,6 +9,7 @@ function EventsDisplay({selectEvent}){
 
         axios.get('/events/get_events')
             .then(function (response) {
+                console.log(response);
                 setEvents(response.data)
             })
             .catch(function (error) {
@@ -19,7 +20,7 @@ function EventsDisplay({selectEvent}){
         return () => {
             controller.abort();
           };
-    }, []);
+    }, [refreshCounter]);
 
     return (<ul>
        {events.map(event =>
