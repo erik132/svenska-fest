@@ -1,8 +1,9 @@
 import {useState} from "react";
 import GeneralInputField from "./GeneralInputField.jsx";
 import axios from "axios";
+import Cookies from 'js-cookie'
 
-function EventCreationDisplay({eventCreatedSuccessfully}){
+function EventCreationDisplay({eventCreatedSuccessfully, refreshLogin}){
     const [eventName, setEventName] = useState("");
     const [address, setAddress] = useState("");
     const [eventDateTime, setEventDateTime] = useState(new Date());
@@ -14,16 +15,23 @@ function EventCreationDisplay({eventCreatedSuccessfully}){
     const onFormSubmit = (e) =>{
         e.preventDefault();
         const formPayload={name:eventName, address:address, description:description, dateTime:eventDateTime, maxParticipants:maxParticipants, isSurstromming:isSurstromming};
+        const additionalOptions = {headers:{"Content-Type":"application/json", "Authorization":"Bearer " + Cookies.get('Authorization')}};
 
         axios.post('/events/create_event',
-            formPayload)
+            formPayload, additionalOptions)
             .then(function (response) {
                 setResponseMsg(response.data);
                 eventCreatedSuccessfully();
             })
             .catch(function (error) {
                 console.log(error);
-                setResponseMsg("Error happened: " + error.response.data);
+                if (error.response.status === 403) {
+                    setResponseMsg("Somehow you have been logged out.");
+                    //Cookies.remove('Authorization');
+                } else {
+                    setResponseMsg("Error happened: " + error.response.data);
+                }
+
             });
     }
 
