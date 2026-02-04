@@ -1,0 +1,8 @@
+The current react project works great, but it has no CSS styling. Can you make it look more professional without
+  changing the functionality? If possible use bulma for styling. bulma.min.css can be found the in the public
+  folder. The login page should have its contents centered in the middle but the back to main button should be in
+  the top right corner. The landing page should have the login button in the top right corner. If the user managed
+  to log in, the login button should display logout instead.
+
+The properties for each event in EventsDisplay are placed horizontally and they do not fit well. Can you place
+  them vertically instead?

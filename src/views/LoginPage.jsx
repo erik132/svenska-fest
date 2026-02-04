@@ -27,14 +27,40 @@ function LoginPage({onPageSwap}){
     }
 
     return (<div>
-        <h1>Login page</h1>
-        <PageSwapButton onPageSwap={onPageSwap} targetPage={landingPage} displayName='Back to main' />
-        <form onSubmit={loginFormSubmitted}>
-            <input type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
-            <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-            <button type="submit">Login</button>
-            {responseMsg && <p>{responseMsg}</p>}
-        </form>
+        <div style={{position: 'absolute', top: '1rem', right: '1rem'}}>
+            <PageSwapButton onPageSwap={onPageSwap} targetPage={landingPage} displayName='Back to main' />
+        </div>
+        <section className="hero is-fullheight">
+            <div className="hero-body">
+                <div className="container">
+                    <div className="columns is-centered">
+                        <div className="column is-10-tablet is-8-desktop is-6-widescreen">
+                            <div className="box" style={{minWidth: '400px', margin: '0 auto'}}>
+                                <h1 className="title has-text-centered">Login</h1>
+                                <form onSubmit={loginFormSubmitted}>
+                                    <div className="field">
+                                        <div className="control">
+                                            <input className="input" type="text" placeholder="Username" value={username} onChange={e => setUsername(e.target.value)} />
+                                        </div>
+                                    </div>
+                                    <div className="field">
+                                        <div className="control">
+                                            <input className="input" type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+                                        </div>
+                                    </div>
+                                    <div className="field">
+                                        <div className="control">
+                                            <button className="button is-primary is-fullwidth" type="submit">Login</button>
+                                        </div>
+                                    </div>
+                                    {responseMsg && <div className="notification is-danger">{responseMsg}</div>}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>);
 }
 

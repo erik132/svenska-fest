@@ -1,6 +1,6 @@
 
 function PageSwapButton({onPageSwap, targetPage, displayName}){
-    return <button onClick={() => onPageSwap(targetPage)}>{displayName}</button>
+    return <button className="button" onClick={() => onPageSwap(targetPage)}>{displayName}</button>
 }
 
 export default PageSwapButton;

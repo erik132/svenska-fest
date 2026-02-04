@@ -22,15 +22,20 @@ function EventsDisplay({selectEvent, refreshCounter}){
           };
     }, [refreshCounter]);
 
-    return (<ul>
-       {events.map(event =>
-               (<li key={event.id}>
-               <button onClick={()=>selectEvent(event.id)}>
-               {event.name} IN {event.address} Time: {event.dateTime} Participants: 0 / {event.maxParticipants}
-               </button>
-               </li>)
-             )}
-    </ul>);
+    return (<div className="content">
+       {events.length === 0 ? (
+           <p>No events available.</p>
+       ) : (
+           events.map(event =>
+               (<div key={event.id} className="box mb-3" style={{cursor: 'pointer'}} onClick={()=>selectEvent(event.id)}>
+                   <p className="title is-5 mb-2">{event.name}</p>
+                   <p className="mb-1"><strong>Location:</strong> {event.address}</p>
+                   <p className="mb-1"><strong>Date & Time:</strong> {new Date(event.dateTime).toLocaleString()}</p>
+                   <p><strong>Participants:</strong> 0 / {event.maxParticipants}</p>
+               </div>)
+           )
+       )}
+    </div>);
 
 }
 

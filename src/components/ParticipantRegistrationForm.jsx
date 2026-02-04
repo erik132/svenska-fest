@@ -25,13 +25,30 @@ function ParticipantRegistrationForm({currentEventId, formSubmittedSuccessfully}
         }
     }
 
-    return (<div>
-        {responseMsg && <p>{responseMsg}</p>}
+    return (<div className="box mt-4">
+        <h4 className="title is-5">Register for this Event</h4>
+        {responseMsg && <div className="notification is-info">{responseMsg}</div>}
         <form onSubmit={onFormSubmit}>
-            <input type="text" placeholder="First name here" value={firstName} onChange={e => setFirstName(e.target.value)}/>
-            <input type="text" placeholder="Last name here" value={lastName} onChange={e => setLastName(e.target.value)}/>
-            <input type="text" placeholder="Estonian ID code here" value={estonianIdCode} onChange={e => setEstonianIdCode(e.target.value)}/>
-            <input type="submit"/>
+            <div className="field">
+                <div className="control">
+                    <input className="input" type="text" placeholder="First name here" value={firstName} onChange={e => setFirstName(e.target.value)}/>
+                </div>
+            </div>
+            <div className="field">
+                <div className="control">
+                    <input className="input" type="text" placeholder="Last name here" value={lastName} onChange={e => setLastName(e.target.value)}/>
+                </div>
+            </div>
+            <div className="field">
+                <div className="control">
+                    <input className="input" type="text" placeholder="Estonian ID code here" value={estonianIdCode} onChange={e => setEstonianIdCode(e.target.value)}/>
+                </div>
+            </div>
+            <div className="field">
+                <div className="control">
+                    <button className="button is-primary" type="submit">Register</button>
+                </div>
+            </div>
         </form>
     </div>);
 }

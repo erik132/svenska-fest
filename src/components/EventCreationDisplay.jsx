@@ -43,8 +43,12 @@ function EventCreationDisplay({eventCreatedSuccessfully, refreshLogin}){
             <GeneralInputField placeholder="Your event description goes here." type="text" value={description} onChange={(e) => setDescription(e.target.value)}/>
             <GeneralInputField labelMsg="Maximum Participants" type="number" value={maxParticipants} onChange={(e) => setMaxParticipants(e.target.value)} />
             <GeneralInputField labelMsg="Do you serve Surströmming?" type="checkbox" value={isSurstromming} onChange={(e) => setIsSurstromming(e.target.checked)}/>
-            <input type="submit"/>
-            {responseMsg && <p>{responseMsg}</p>}
+            <div className="field">
+                <div className="control">
+                    <button className="button is-success" type="submit">Create Event</button>
+                </div>
+            </div>
+            {responseMsg && <div className="notification is-success">{responseMsg}</div>}
         </form>
     </div>);
 }

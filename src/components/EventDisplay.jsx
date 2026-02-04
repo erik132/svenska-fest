@@ -29,9 +29,12 @@ function EventDisplay({currentEventId}){
         }
     }, [currentEventId, registrationCounter]);
 
-    return (<>{ currentEvent && (<div>
+    return (<>{ currentEvent ? (<div>
+        <h2 className="title is-3">Event Details</h2>
         <EventDefailedDescription currentEvent={currentEvent} />
         <ParticipantRegistrationForm currentEventId={currentEventId} formSubmittedSuccessfully={formSubmittedSuccessfully} />
+    </div>) : (<div className="notification is-light">
+        <p>Select an event to view details and register.</p>
     </div>)}</>);
 }
 

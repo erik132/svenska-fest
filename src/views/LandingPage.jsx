@@ -17,11 +17,21 @@ function LandingPage({onPageSwap}) {
     }
 
     const refreshLogin = () => {
-        setIsLoggedIn(Cookies.get('Authorization') !== null);
+        const authCookie = Cookies.get('Authorization');
+        setIsLoggedIn(authCookie != null && authCookie !== 'null');
     }
 
     const eventCreationSuccessful = () => {
         setEventsCreatedCount(eventsCreatedCount + 1);
+    }
+
+    const handleLoginLogout = () => {
+        if (isLoggedIn) {
+            Cookies.remove('Authorization');
+            setIsLoggedIn(false);
+        } else {
+            onPageSwap('LoginPage');
+        }
     }
 
     const getEventCreationDisplay = () => {
@@ -29,16 +39,34 @@ function LandingPage({onPageSwap}) {
             return <EventCreationDisplay eventCreatedSuccessfully={eventCreationSuccessful}
                                          refreshLogin={refreshLogin}/>;
         } else {
-            return <p>Log in to create events.</p>;
+            return <button className="notification is-info" onClick={handleLoginLogout}>Log in to create events.</button>;
         }
     }
 
     return (<div>
-        <h1>LandingPage</h1>
-        <PageSwapButton onPageSwap={onPageSwap} targetPage='LoginPage' displayName='Login'/>
-        <EventsDisplay selectEvent={selectEvent} refreshCounter={eventsCreatedCount}/>
-        <EventDisplay currentEventId={currentEventId}/>
-        {getEventCreationDisplay()}
+        <div style={{position: 'absolute', top: '1rem', right: '1rem'}}>
+            <button className="button is-primary" onClick={handleLoginLogout}>
+                {isLoggedIn ? 'Logout' : 'Login'}
+            </button>
+        </div>
+        <section className="section">
+            <div className="container">
+                <h1 className="title is-1 has-text-centered">Svenska Fest</h1>
+                <div className="columns">
+                    <div className="column is-half">
+                        <h2 className="title is-3">Events</h2>
+                        <EventsDisplay selectEvent={selectEvent} refreshCounter={eventsCreatedCount}/>
+                    </div>
+                    <div className="column is-half">
+                        <EventDisplay currentEventId={currentEventId}/>
+                    </div>
+                </div>
+                <div className="box mt-5">
+                    <h2 className="title is-4">Create New Event</h2>
+                    {getEventCreationDisplay()}
+                </div>
+            </div>
+        </section>
     </div>);
 }
 
