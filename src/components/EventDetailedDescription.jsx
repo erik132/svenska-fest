@@ -1,7 +1,7 @@
 
 
 function EventDetailedDescription({currentEvent}){
-    
+
     return (
         <div className="box">
             <h3 className="title is-4">{currentEvent.name}</h3>
@@ -10,8 +10,8 @@ function EventDetailedDescription({currentEvent}){
                 <p><strong>Date & Time:</strong> {new Date(currentEvent.dateTime).toLocaleString()}</p>
                 <p><strong>Capacity:</strong> {currentEvent.eventParticipants.length} / {currentEvent.maxParticipants} participants</p>
                 <p><strong>Description:</strong> {currentEvent.description}</p>
-                <p><strong>Participants:</strong></p>
                 {currentEvent.surstromming === true ? (<p><strong>Surströmming is being served</strong></p>) : (<p><strong>NO Surströmming</strong></p>)}
+                <p><strong>Participants:</strong></p>
                 {currentEvent.eventParticipants.length === 0 ? (
                     <p>No participants yet.</p>
                 ) : (
