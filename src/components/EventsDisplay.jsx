@@ -31,7 +31,7 @@ function EventsDisplay({selectEvent, refreshCounter}){
                    <p className="title is-5 mb-2">{event.name}</p>
                    <p className="mb-1"><strong>Location:</strong> {event.address}</p>
                    <p className="mb-1"><strong>Date & Time:</strong> {new Date(event.dateTime).toLocaleString()}</p>
-                   <p><strong>Participants:</strong> 0 / {event.maxParticipants}</p>
+                   <p><strong>Participants:</strong> {event.participantsCount} / {event.maxParticipants}</p>
                </div>)
            )
        )}

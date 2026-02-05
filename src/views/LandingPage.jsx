@@ -58,7 +58,7 @@ function LandingPage({onPageSwap}) {
                         <EventsDisplay selectEvent={selectEvent} refreshCounter={eventsCreatedCount}/>
                     </div>
                     <div className="column is-half">
-                        <EventDisplay currentEventId={currentEventId}/>
+                        <EventDisplay currentEventId={currentEventId} refreshCounter={eventCreationSuccessful}/>
                     </div>
                 </div>
                 <div className="box mt-5">

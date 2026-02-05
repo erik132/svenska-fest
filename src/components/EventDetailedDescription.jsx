@@ -1,6 +1,7 @@
 
 
-function EventDefailedDescription({currentEvent}){
+function EventDetailedDescription({currentEvent}){
+    
     return (
         <div className="box">
             <h3 className="title is-4">{currentEvent.name}</h3>
@@ -10,11 +11,12 @@ function EventDefailedDescription({currentEvent}){
                 <p><strong>Capacity:</strong> {currentEvent.eventParticipants.length} / {currentEvent.maxParticipants} participants</p>
                 <p><strong>Description:</strong> {currentEvent.description}</p>
                 <p><strong>Participants:</strong></p>
+                {currentEvent.surstromming === true ? (<p><strong>Surströmming is being served</strong></p>) : (<p><strong>NO Surströmming</strong></p>)}
                 {currentEvent.eventParticipants.length === 0 ? (
                     <p>No participants yet.</p>
                 ) : (
                     <ul>
-                        {currentEvent.eventParticipants.map(participant => <li key={participant.firstName}> {participant.firstName} {participant.lastName} </li>)}
+                        {currentEvent.eventParticipants.map((participant, index, array) => {return (<li key={index}> {participant.firstName} {participant.lastName} </li>);})}
                     </ul>
                 )}
             </div>
@@ -22,4 +24,4 @@ function EventDefailedDescription({currentEvent}){
     );
 }
 
-export default EventDefailedDescription;
+export default EventDetailedDescription;
